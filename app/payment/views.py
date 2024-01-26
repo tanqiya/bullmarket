@@ -84,6 +84,12 @@ def complete_order(request):
                     product.quantity -= item['qty']
                     product.save()
 
+                    # Update category quantity sold
+                    product_category = product.category
+                    product_category.quantity_sold += item['qty']
+                    product_category.save()
+
+
 
                 #  2) Create order -> Guest users without an account
 

@@ -10,6 +10,8 @@ class Category(models.Model):
 
     slug = models.SlugField(max_length=250, unique=True)
 
+    quantity_sold = models.IntegerField(default=0)
+
 
     class Meta:
 
