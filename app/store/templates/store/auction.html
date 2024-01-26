@@ -1,0 +1,98 @@
+{% extends "./base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<style>
+    .auction-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .auction-item h2 {
+        color: #333;
+    }
+    .auction-item p {
+        color: #666;
+    }
+    .bid-input {    
+        margin-top: 10px;
+    }
+    .item-image {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="container">
+    <h1>Auction Items</h1>
+    <div class="row">
+        <!-- Each .col-md-6 represents a column. Adjust the number for different sizing -->
+        <div class="col-md-6">
+            <div class="auction-item">
+                <!-- Replace with dynamic image source -->
+                <h2>Tea Set</h2> <!-- Replace with dynamic item name -->
+                <p>Current Bid: $300</p>
+                <div class="bid-input">
+                    <input type="number" placeholder="Enter your bid" />
+                    <button type="button">Place Bid</button>
+                </div>
+            </div>
+            <div class="auction-item">
+                <!-- Replace with dynamic image source -->
+                <h2>Mirror</h2> <!-- Replace with dynamic item name -->
+                <p>Current Bid: $150</p>
+                <div class="bid-input">
+                    <input type="number" placeholder="Enter your bid" />
+                    <button type="button">Place Bid</button>
+                </div>
+            </div>
+            <div class="auction-item">
+                <!-- Replace with dynamic image source -->
+                <h2>Globe</h2> <!-- Replace with dynamic item name -->
+                <p>Current Bid: $200</p>
+                <div class="bid-input">
+                    <input type="number" placeholder="Enter your bid" />
+                    <button type="button">Place Bid</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="auction-item">
+                <!-- Replace with dynamic image source -->
+                <h2>Pocket Watch</h2> <!-- Replace with dynamic item name -->
+                <p>Current Bid: $500</p>
+                <div class="bid-input">
+                    <input type="number" placeholder="Enter your bid" />
+                    <button type="button">Place Bid</button>
+                </div>
+            </div>
+            <div class="auction-item">
+                <!-- Replace with dynamic image source -->
+                <h2>Binoculars</h2> <!-- Replace with dynamic item name -->
+                <p>Current Bid: $250</p>
+                <div class="bid-input">
+                    <input type="number" placeholder="Enter your bid" />
+                    <button type="button">Place Bid</button>
+                </div>
+            </div>
+            <div class="auction-item">
+                <!-- Replace with dynamic image source -->
+                <h2>Telephone</h2> <!-- Replace with dynamic item name -->
+                <p>Current Bid: $800</p>
+                <div class="bid-input">
+                    <input type="number" placeholder="Enter your bid" />
+                    <button type="button">Place Bid</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.db import models
 
-
+from django.utils.text import slugify
 from django.urls import reverse
 
 conditions = (
@@ -76,3 +76,12 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse("product-info", args=[self.slug])
+
+
+        return reverse('product-info', args=[self.slug])
+    
+# Define the auction items
+class AuctionItem(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    current_bid = models.DecimalField(max_digits=6, decimal_places=2)
