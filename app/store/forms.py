@@ -32,3 +32,6 @@ class ProductForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+    
+class BidForm(forms.Form):
+    bid_amount = forms.DecimalField(decimal_places=2, max_digits=6)

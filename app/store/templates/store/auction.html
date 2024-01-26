@@ -1,0 +1,75 @@
+{% extends "./base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<style>
+    .auction-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .auction-item h2 {
+        color: #333;
+    }
+    .auction-item p {
+        color: #666;
+    }
+    .bid-input {    
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container">
+    <h1>Auction Items</h1>
+    
+    <!-- Hardcoded static items for testing -->
+    <div class="auction-item">
+        <h2>Item 1</h2>
+        <p>Description for Item 1</p>
+        <p>Current Bid: $50</p>
+        <div class="bid-input">
+            <input type="number" placeholder="Enter your bid" />
+            <button type="button">Place Bid</button>
+        </div>
+    </div>
+
+    <div class="auction-item">
+        <h2>Item 2</h2>
+        <p>Description for Item 2</p>
+        <p>Current Bid: $75</p>
+        <div class="bid-input">
+            <input type="number" placeholder="Enter your bid" />
+            <button type="button">Place Bid</button>
+        </div>
+    </div>
+
+    <!-- Add more items as needed -->
+
+</div>
+
+<div class="container">
+    <h1>Auction Items</h1>
+
+    {% for product in products %}
+    <div class="auction-item">
+        <img src="{{ product.image.url }}" alt="{{ product.title }}" class="item-image">
+        <h2>{{ product.title }}</h2>
+        <p>{{ product.description }}</p>
+        <p>Current Bid: $<span class="current-bid">TBD</span></p>
+        <div class="bid-input">
+            <input type="number" placeholder="Enter your bid" />
+            <button type="button">Place Bid</button>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+
+{% endblock %}

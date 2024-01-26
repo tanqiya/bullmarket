@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 
-from . models import Category, Product
+from . models import Category, Product, AuctionItem
 
 from django.shortcuts import get_object_or_404
 
-from .forms import ProductForm
+from .forms import ProductForm, BidForm
 
 from django.contrib.auth.decorators import login_required
 
@@ -49,6 +49,15 @@ def product_info(request, product_slug):
 
     return render(request, 'store/product-info.html', context)
 
+def auction(request):
+    items = AuctionItem.objects.all()
+    bid_form = BidForm()
+    return render(request, 'store/auction.html', {'items': items, 'bid_form': bid_form})
+
+def auction_view(request):
+    # Filter products with price greater than 100
+    products = Product.objects.filter(price__gt=100)
+    return render(request, 'store/auction.html', {'products': products})
 
 @login_required
 def upload_product(request):
@@ -64,10 +73,3 @@ def upload_product(request):
     else:
         form = ProductForm()
     return render(request, 'store/upload_product.html', {'form': form})
-
-
-
-
-
-
-
