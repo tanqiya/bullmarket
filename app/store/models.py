@@ -19,9 +19,6 @@ class Category(models.Model):
 
     quantity_sold = models.IntegerField(default=0)
 
-    image = models.ImageField(upload_to='images/')
-
-
     class Meta:
         verbose_name_plural = "categories"
 
