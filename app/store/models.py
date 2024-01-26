@@ -12,7 +12,7 @@ class Category(models.Model):
 
     quantity_sold = models.IntegerField(default=0)
 
-    image = models.FileField(upload_to='images/')
+    image = models.ImageField(upload_to='images/')
 
 
     class Meta:
@@ -51,7 +51,7 @@ class Product(models.Model):
 
     seller = models.CharField(max_length=250)
 
-    image = models.FileField(upload_to='images/')
+    image = models.ImageField(upload_to='images/')
 
 
     class Meta:
