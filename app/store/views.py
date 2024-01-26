@@ -78,7 +78,12 @@ def upload_product(request):
         form = ProductForm()
     return render(request, 'store/upload_product.html', {'form': form})
 
+@login_required
+def edit_product(request, listing_id):
+    listing = get_object_or_404(Product, id=listing_id)
+    form = ProductForm(instance=listing)
 
+    return render(request, 'store/edit_product.html', {'form': form})
 
 
 
