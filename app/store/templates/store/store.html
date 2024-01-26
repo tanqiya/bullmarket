@@ -44,36 +44,41 @@
        <!-- All products section -->
        <div class="album py-5 bg-light">
 
-            <div class="container">
-                
-                <div class="pb-3 h5"> Popular Categories </div>
-                
-                <hr>
+        <div class="container">
 
-                {% for category in  top_categories %}
+          <div class="pb-3 h5"> Popular Categories </div>
 
-                    <div class="col">
+          <hr>
 
-                        <div class="card shadow-sm">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
 
 
-                            <div class="card-body">
+            {% for category in top_categories %}
 
-                            <p class="card-text">
-                                <a class="text-info text-decoration-none"> {{category.slug | capfirst }}</a>
-                            </p>
+                <div class="col">
 
-                            </div>
+                    <div class="card shadow-sm">
+
+                        <img class="img-fluid" alt="Responsive image" src="{{category.image.url}}">
+
+                        <div class="card-body">
+
+                        <p class="card-text">
+                            <a class="text-info text-decoration-none"> {{category.slug | capfirst }}</a>
+                        </p>
 
                         </div>
 
-                    </div>  
+                    </div>
 
-                {% endfor %}
+                </div>
+            {% endfor %}
 
-            </div>
+          </div>
 
-       </div>
+        </div>
+
+      </div>
         
 
        <div class="album py-5 bg-light">

@@ -12,6 +12,8 @@ class Category(models.Model):
 
     quantity_sold = models.IntegerField(default=0)
 
+    image = models.FileField(upload_to='images/')
+
 
     class Meta:
 
