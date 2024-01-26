@@ -3,9 +3,16 @@ from django.db import models
 
 from django.urls import reverse
 
+conditions = (
+    ("green", "GREEN"),
+    ("blue", "BLUE"),
+    ("red", "RED"),
+    ("orange", "ORANGE"),
+    ("black", "BLACK"),
+)
+
 
 class Category(models.Model):
-
     name = models.CharField(max_length=250, db_index=True)
 
     slug = models.SlugField(max_length=250, unique=True)
@@ -16,30 +23,29 @@ class Category(models.Model):
 
 
     class Meta:
-
-        verbose_name_plural = 'categories'
-
+        verbose_name_plural = "categories"
 
     def __str__(self):
-
         return self.name
 
-
     def get_absolute_url(self):
-
-        return reverse('list-category', args=[self.slug])
-
+        return reverse("list-category", args=[self.slug])
 
 
 class Product(models.Model):
+    # FK
 
-    #FK
+    category = models.ForeignKey(
+        Category, related_name="product", on_delete=models.CASCADE, null=True
+    )
 
-    category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE, null=True)
+    condition = models.CharField(
+        max_length=250, choices=conditions, default="green", blank=True
+    )
 
     title = models.CharField(max_length=250)
 
-    brand = models.CharField(max_length=250, default='un-branded')
+    brand = models.CharField(max_length=250, default="un-branded")
 
     description = models.TextField(blank=True)
 
@@ -55,8 +61,7 @@ class Product(models.Model):
 
 
     class Meta:
-
-        verbose_name_plural = 'products'
+        verbose_name_plural = "products"
 
     def save(self, *args, **kwargs):
         # Ensure the slug is set before saving
@@ -67,14 +72,7 @@ class Product(models.Model):
         super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
-
         return self.title
 
-
-
     def get_absolute_url(self):
-
-        return reverse('product-info', args=[self.slug])
-
-
-
+        return reverse("product-info", args=[self.slug])
