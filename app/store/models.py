@@ -17,6 +17,11 @@ class Category(models.Model):
 
     slug = models.SlugField(max_length=250, unique=True)
 
+    quantity_sold = models.IntegerField(default=0)
+
+    image = models.ImageField(upload_to='images/')
+
+
     class Meta:
         verbose_name_plural = "categories"
 
@@ -52,7 +57,8 @@ class Product(models.Model):
 
     seller = models.CharField(max_length=250)
 
-    image = models.FileField(upload_to="images/")
+    image = models.ImageField(upload_to='images/')
+
 
     class Meta:
         verbose_name_plural = "products"

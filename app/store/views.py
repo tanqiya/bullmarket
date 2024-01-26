@@ -21,7 +21,9 @@ def store(request):
     # all_products = Product.objects.all()
     all_products = Product.objects.filter(quantity__gt=0)
 
-    context = {'my_products':all_products}
+    top_categories = Category.objects.order_by('-quantity_sold')[:3]
+
+    context = {'my_products':all_products, 'top_categories':top_categories}
 
     return render(request, 'store/store.html', context)
 
