@@ -5,7 +5,7 @@ from . import views
 
 from django.contrib.auth import views as auth_views
 
-
+import store
 
 
 urlpatterns = [
@@ -83,6 +83,7 @@ urlpatterns = [
 
     path('track-listings', views.track_listings, name='track-listings'),
 
+    path('edit_listing/<int:listing_id>/', store.views.edit_product, name='edit_listing'),
 
     path('delete_listing/<int:listing_id>/', views.delete_listing, name='delete_listing'),
 
