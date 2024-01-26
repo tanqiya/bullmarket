@@ -10,6 +10,11 @@ from django.contrib.auth.decorators import login_required
 
 from PIL import Image
 
+from django.contrib.auth.models import User
+
+from account.models import UserProfile 
+
+
 
 def store(request):
 
@@ -40,12 +45,18 @@ def list_category(request, category_slug=None):
     return render(request, 'store/list-category.html', {'category':category, 'products':products})
 
 
-
 def product_info(request, product_slug):
-
     product = get_object_or_404(Product, slug=product_slug)
+    
+    # Assuming the seller field contains the username of the seller.
+    seller = get_object_or_404(User, username=product.seller)
+    user_profile = UserProfile.objects.get(user=seller)
+    is_seller_verified = user_profile.is_verified
 
-    context = {'product': product}
+    context = {
+        'product': product,
+        'is_seller_verified': is_seller_verified  # Add the is_verified status to the context
+    }
 
     return render(request, 'store/product-info.html', context)
 
@@ -65,9 +76,8 @@ def upload_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save(commit=False)
-            product.seller = request.user.email
-
-            form.save()
+            product.seller = request.user.username
+            product.save()  # Save the product instance, not the form
 
             return redirect('store')
     else:

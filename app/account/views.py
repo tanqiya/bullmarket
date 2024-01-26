@@ -28,6 +28,9 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
 
+from .models import UserProfile
+
+
 
 
 
@@ -42,10 +45,9 @@ def register(request):
         if form.is_valid():
 
             user = form.save()
-
-            user.is_active = False
-
-            user.save()
+            user_profile = user.userprofile
+            user_profile.is_verified = False  # or True, depending on your logic
+            user_profile.save()
 
             # Email verification setup (template)
 
@@ -63,7 +65,6 @@ def register(request):
             })
 
             user.email_user(subject=subject, message=message)
-
 
             return redirect('email-verification-sent')
 
@@ -184,14 +185,11 @@ def dashboard(request):
     return render(request, 'account/dashboard.html')
 
 
-
-
 @login_required(login_url='my-login')
 def profile_management(request):
-
-    # Updating our user's username and email
-
     user_form = UpdateUserForm(instance=request.user)
+    user_profile = UserProfile.objects.get(user=request.user)
+    is_verified = user_profile.is_verified
 
     if request.method == 'POST':
 
@@ -207,7 +205,7 @@ def profile_management(request):
 
 
 
-    context = {'user_form':user_form}
+    context = {'user_form':user_form, 'is_verified': is_verified }
 
     return render(request, 'account/profile-management.html', context=context)
 

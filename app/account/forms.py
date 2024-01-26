@@ -56,12 +56,9 @@ class LoginForm(AuthenticationForm):
 
 
 # Update form
-
 class UpdateUserForm(forms.ModelForm):
 
     password = None
-
-
     class Meta:
 
         model = User
@@ -94,10 +91,6 @@ class UpdateUserForm(forms.ModelForm):
 
             raise forms.ValidationError("Your email is too long")
 
-
         return email
-
-
-
 
 
