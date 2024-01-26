@@ -24,10 +24,15 @@
 
                 <strong> {{product.brand}}</strong>
 
+                <p> Sold by {{ product.seller }}
+                    ( {% if is_seller_verified %}
+                        &#10004; <!-- This is a Unicode checkmark -->
+                    {% else %}
+                        &#10008; <!-- This is a Unicode cross -->
+                    {% endif %} )
+                </p> 
+
                 <hr>
-
-                <br>
-
 
                 <p> {{product.description}} </p>
 
@@ -74,6 +79,7 @@
 
 
                             </div>
+                            
 
                         </div>
 
@@ -82,9 +88,7 @@
                 </div>
 
             </div>
-
         </div>
-
     </main>
 
     <br>

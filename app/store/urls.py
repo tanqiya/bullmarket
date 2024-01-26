@@ -16,6 +16,8 @@ urlpatterns = [
     path('product/<slug:product_slug>/', views.product_info, name='product-info'),
 
     path('store/upload_product' ,views.upload_product, name='upload-product'),
+    
+    path('store/auction', views.auction, name="auction")
 
 
 ]

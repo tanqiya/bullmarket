@@ -1,6 +1,6 @@
 from django.db import models
 
-
+from django.utils.text import slugify
 from django.urls import reverse
 
 conditions = (
@@ -16,6 +16,11 @@ class Category(models.Model):
     name = models.CharField(max_length=250, db_index=True)
 
     slug = models.SlugField(max_length=250, unique=True)
+
+    quantity_sold = models.IntegerField(default=0)
+
+    image = models.ImageField(upload_to='images/')
+
 
     class Meta:
         verbose_name_plural = "categories"
@@ -52,7 +57,8 @@ class Product(models.Model):
 
     seller = models.CharField(max_length=250)
 
-    image = models.FileField(upload_to="images/")
+    image = models.ImageField(upload_to='images/')
+
 
     class Meta:
         verbose_name_plural = "products"
@@ -70,3 +76,12 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse("product-info", args=[self.slug])
+
+
+        return reverse('product-info', args=[self.slug])
+    
+# Define the auction items
+class AuctionItem(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    current_bid = models.DecimalField(max_digits=6, decimal_places=2)

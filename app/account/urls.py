@@ -17,8 +17,6 @@ urlpatterns = [
     # Email verification URL's
 
     path('email-verification/<str:uidb64>/<str:token>/', views.email_verification, name='email-verification'),
-
-
     path('email-verification-sent', views.email_verification_sent, name='email-verification-sent'),
 
 
@@ -42,9 +40,7 @@ urlpatterns = [
     # Dashboard / profile urls
 
     path('dashboard', views.dashboard, name='dashboard'),
-
     path('profile-management', views.profile_management, name='profile-management'),
-
     path('delete-account', views.delete_account, name='delete-account'),
 
 
